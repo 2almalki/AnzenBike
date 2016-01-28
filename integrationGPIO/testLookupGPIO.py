@@ -23,17 +23,22 @@ try:
         GPIO.output(z1_pin, 1)
         GPIO.output(z2_pin, 0)
         GPIO.output(z3_pin, 0)
+        print "\nZone 1 activated on pin: %d" %z1_pin
         sleep(delay)
         # car in zone 2
         GPIO.output(z1_pin, 0)
         GPIO.output(z2_pin, 1)
         GPIO.output(z3_pin, 0)
+        print "\nZone 2 activated on pin: %d" %z2_pin
         sleep(delay)
         # car in zone 3
         GPIO.output(z1_pin, 0)
         GPIO.output(z2_pin, 0)
         GPIO.output(z3_pin, 1)
+        print "\nZone 3 activated on pin: %d" %z3_pin
         sleep(delay)
 
-except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt
-    GPIO.cleanup()                 # resets all GPIO ports used by this program
+# trap a CTRL+C keyboard interrupt
+except KeyboardInterrupt:
+    # resets all GPIO ports used by this program
+    GPIO.cleanup()

@@ -22,9 +22,9 @@ try:
     # main loop
     # TODO - add taillight / laser lane implementation
     while True:
-        z1 = GPIO.IN(pin_in_lidar_z1)
-        z2 = GPIO.IN(pin_in_lidar_z2)
-        z3 = GPIO.IN(pin_in_ultra_z3)
+        z1 = GPIO.input(pin_in_lidar_z1)
+        z2 = GPIO.input(pin_in_lidar_z2)
+        z3 = GPIO.input(pin_in_ultra_z3)
 
         if z3 == True:
             # something detected in Z3
