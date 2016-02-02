@@ -4,14 +4,14 @@ import RPi.GPIO as GPIO
 # set pins corresponding to each Zone
 pin_in_lidar_z1 = 24
 pin_in_lidar_z2 = 25
-pin_in_ultra_z3 = 26
+pin_in_lidar_z3 = 26
 
 # set GPIO mode
 GPIO.setmode(GPIO.BOARD)
 # set pins as input in order to read status
 GPIO.setup(pin_in_lidar_z1,GPIO.IN)
 GPIO.setup(pin_in_lidar_z2,GPIO.IN)
-GPIO.setup(pin_in_ultra_z3,GPIO.IN)
+GPIO.setup(pin_in_lidar_z3,GPIO.IN)
 
 # global variable
 z1 = False
@@ -24,7 +24,7 @@ try:
     while True:
         z1 = GPIO.input(pin_in_lidar_z1)
         z2 = GPIO.input(pin_in_lidar_z2)
-        z3 = GPIO.input(pin_in_ultra_z3)
+        z3 = GPIO.input(pin_in_lidar_z3)
 
         if z3 == True:
             # something detected in Z3
