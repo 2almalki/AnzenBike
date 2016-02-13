@@ -4,7 +4,6 @@ With the camera's wide angle view, we will apply image processing to detect car 
 Use Raspberry Pi (type B)
 
 ### Necessary packages to be imported
-import numpy as np
 ** Open CV Import
 - import argparse
 - import cv2
