@@ -4,7 +4,7 @@
 	#include <stdio.h>
 	#define ERange 2000 // error range 2m
     #define SAMPLERATE 20 // set the sample rate in ms
-
+	#define OUT_PIN 1
 
 
 
@@ -26,34 +26,50 @@ void to_sensor(int data1, int data2 , struct LData *(in))
 	}
 }
 
+
  
 void run(int carry1)
 {
 	int fd,del,res1=0, res2=0;
+	int count =0;
     unsigned char st;
 	del = SAMPLERATE;
     res1=input.lastDistance;
 	fd = lidar_init(false);
+	if ( wiringPiSetup () == -1)
+	{
+		return; 
+	}
+	pinMode (OUT_PIN , OUTPUT);
 	if (fd == -1) 
 	{
 		printf("initialization error\n");
 	}
 	else 
 	{
-		int count =0;
-		while(count<2)
+		while(true)
 		{
-			count++;
-			if(res1==0 && res2==0 )
+			while(count<2)
 			{
-				res1=lidar_read(fd);
+				count++;
+				if(res1==0 && res2==0 )
+				{
+					res1=lidar_read(fd);
+				}
+				else if ((res1)&& !res2)
+				{
+					res2=lidar_read(fd);
+				}
 			}
-			else if ((res1)&& !res2)
+			tosensor(res1,res2,input);
+			//*
+			if (input.LidarTriger == 1)
 			{
-				res2=lidar_read(fd);
+				digitalWrite(OUT_PIN,1);
 			}
+			count =0;
 		}
-		tosensor(res1,res2,input);
+			//*/
 
 	}
 }
