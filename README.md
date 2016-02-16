@@ -16,5 +16,5 @@ This ensures that each step will be tested independantly before everything gets 
   * Red (Zone 3):
   * Yellow (Zone 2):
   * Green (Zone 1):
-- LED Tailight: PIN , GPIO
-- Laser Lane: PIN , GPIO
+- LED Tailight: PIN 7 , GPIO 04
+- Laser Lane: PIN 36 , GPIO 16
