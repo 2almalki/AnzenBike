@@ -1,0 +1,75 @@
+    #include "lidarLite.h"
+    #include "Lider_run.h"
+    #include <stdlib.h>
+	#include <stdio.h>
+	#define ERange 2000 // error range 2m
+    #define SAMPLERATE 20 // set the sample rate in ms
+	#define OUT_PIN 1
+
+
+
+struct LData input ={0 ,0};
+
+void to_sensor(int data1, int data2 , struct LData *(in))
+{
+	
+	// determine range
+	if((data1-ERange)> (data2+ERange))
+	{
+		in->LidarTriger=1;
+		in->lastDistance=data2;
+	}
+	else if((data1+ERange)< (data2-ERange))
+	{
+		in->LidarTriger=0;
+		in->lastDistance=data2;
+	}
+}
+
+
+ 
+void run(int carry1)
+{
+	int fd,del,res1=0, res2=0;
+	int count =0;
+    unsigned char st;
+	del = SAMPLERATE;
+    res1=input.lastDistance;
+	fd = lidar_init(false);
+	if ( wiringPiSetup () == -1)
+	{
+		return; 
+	}
+	pinMode (OUT_PIN , OUTPUT);
+	if (fd == -1) 
+	{
+		printf("initialization error\n");
+	}
+	else 
+	{
+		while(true)
+		{
+			while(count<2)
+			{
+				count++;
+				if(res1==0 && res2==0 )
+				{
+					res1=lidar_read(fd);
+				}
+				else if ((res1)&& !res2)
+				{
+					res2=lidar_read(fd);
+				}
+			}
+			tosensor(res1,res2,input);
+			//*
+			if (input.LidarTriger == 1)
+			{
+				digitalWrite(OUT_PIN,1);
+			}
+			count =0;
+		}
+			//*/
+
+	}
+}
