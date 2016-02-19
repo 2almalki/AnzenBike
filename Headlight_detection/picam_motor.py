@@ -128,18 +128,17 @@ def moveMotor(angle):
 
 
 # Main Program
-if __name__ == "__main__":
-
+try:
 	# capture frames from the camera
 	for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 		# grab the raw NumPy array representing the image, then initialize the timestamp
 		# and occupied/unoccupied text
 		image = frame.array
-	 
+		
 		# clear the stream in preparation for the next frame
 		rawCapture.truncate(0)
-	 	
-	 	# Reference Point - (Location of Cyclist)
+		
+		# Reference Point - (Location of Cyclist)
 		refPtX = frameWidth/2
 		refPtY = frameHeight
 		
@@ -157,17 +156,18 @@ if __name__ == "__main__":
 		if (maxBinNum > 10):
 			# If the camera is in a bright settings, the motor will be set to a default position
 			moveMotor(90)
+			cv2.imshow("Frame", frame.array)
+
 		else:
-			# mask = np.zeros((frameHeight, frameWidth, 3), dtype = "uint8")
+			mask = np.zeros((frameHeight, frameWidth, 3), dtype = "uint8")
 			# ## Pentagon
-			# pts = np.array([[mask.shape[1]*(0.35),mask.shape[0]*(0.15)],[mask.shape[1]*(0.65),mask.shape[0]*(0.15)],[mask.shape[1]*(0.985),mask.shape[0]*(0.8)],[mask.shape[1]*(0.5),mask.shape[0]*(0.985)],[mask.shape[1]*(0.015),mask.shape[0]*(0.8)]], np.int32)
-			# pts = pts.reshape((-1,1,2))
-			# cv2.fillConvexPoly(mask,pts,(255,255,255),1)
-			# masked = cv2.bitwise_and(image, mask)
+			pts = np.array([[mask.shape[1]*(0.35),mask.shape[0]*(0.15)],[mask.shape[1]*(0.65),mask.shape[0]*(0.15)],[mask.shape[1]*(0.985),mask.shape[0]*(0.8)],[mask.shape[1]*(0.5),mask.shape[0]*(0.985)],[mask.shape[1]*(0.015),mask.shape[0]*(0.8)]], np.int32)
+			pts = pts.reshape((-1,1,2))
+			cv2.fillConvexPoly(mask,pts,(255,255,255),1)
+			masked = cv2.bitwise_and(image, mask)
 			# cv2.imshow("Masked", thresh)
 			# cv2.waitKey(0)
-			# gray = cv2.cvtColor(masked, cv2.COLOR_BGR2GRAY)
-
+			gray = cv2.cvtColor(masked, cv2.COLOR_BGR2GRAY)
 			blur = cv2.GaussianBlur(gray, (9, 9), 0)
 			(T, thresh) = cv2.threshold(blur, threshPt, 255, cv2.THRESH_BINARY)
 
@@ -181,7 +181,7 @@ if __name__ == "__main__":
 			nearW = 0;
 			nearH = 0;
 			nearDistance = 5000
-		
+			
 			for (i, c) in enumerate(cnts):
 				(x, y, w, h) = cv2.boundingRect(c)
 				distance = getDistance((x+w/2),(y+h/2),refPtX,refPtY)
@@ -193,7 +193,7 @@ if __name__ == "__main__":
 					nearDistance = distance
 
 				lightSource = image[y:y + h, x:x + w]
-						
+
 			if (nearX>0 or nearY>0) and nearDistance>10:
 				cv2.rectangle(image,(nearX,nearY),(nearX+nearW,nearY+nearH),(0,255,0),2)
 				cv2.line(image,(nearX+nearW/2,nearY+nearH),(refPtX,refPtY),(0,255,0))
@@ -204,12 +204,24 @@ if __name__ == "__main__":
 			cv2.imshow("Gray", gray)
 			cv2.imshow("Thresh", thresh)
 			
-			# if the 'q' key is pressed, stop the loop
-			if cv2.waitKey(1) & 0xFF == ord("q"):
-				break
+		# if the 'q' key is pressed, stop the loop
+		if cv2.waitKey(1) & 0xFF == ord("q"):
+			break
 
-	# cleanup the camera and close any open windows
+except KeyboardInterrupt:
+	# code you want to run before the program
+	# exits when you press CTRL+C
+	print "\n\n Keyboard interrupt detected"
+
+# except:
+    # catches ALL other exceptions including errors.
+    # won't get any error messages for debugging
+    # so only use it once your code is working
+    # print "Other error or exception occurred!"
+
+finally:
+	print "\n Cleanup GPIO"
+	GPIO.cleanup() # clean exit
 	camera.release()
 	cv2.destroyAllWindows()
 	pwm.stop()
-	GPIO.cleanup()
