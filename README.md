@@ -13,8 +13,8 @@ This ensures that each step will be tested independantly before everything gets 
   * SDA: GPIO 02
   * SCL: GPIO 03
 - Zone indicator:
-  * Red (Zone 3):
-  * Yellow (Zone 2):
-  * Green (Zone 1):
+  * Red (Zone 3): PIN 29, GPIO 05
+  * Yellow (Zone 2): PIN 31, GPIO 06
+  * Green (Zone 1): PIN 33, GPIO 13
 - LED Tailight: PIN 7 , GPIO 04
 - Laser Lane: PIN 36 , GPIO 16
