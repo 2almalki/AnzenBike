@@ -18,3 +18,18 @@ This ensures that each step will be tested independantly before everything gets 
   * Green (Zone 1): PIN 33, GPIO 13
 - LED Tailight: PIN 7 , GPIO 04
 - Laser Lane: PIN 36 , GPIO 16
+
+### Necessary packages to be imported
+Using Raspberry Pi (type B)
+Install by typing in terminal: 
+- sudo pip install *package_name*
+
+** Open CV Import **
+- import argparse
+- import cv2
+- import numpy as np
+
+** Motor Import **
+- import RPi.GPIO as GPIO
+- import time
+- import math
