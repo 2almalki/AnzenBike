@@ -3,9 +3,9 @@ import RPi.GPIO as GPIO
 import time
 
 # set pins corresponding to each Zone
-pin_in_lidar_z1 = 24
-pin_in_lidar_z2 = 25
-pin_in_lidar_z3 = 26
+pin_in_lidar_z1 = 33
+pin_in_lidar_z2 = 31
+pin_in_lidar_z3 = 29
 pin_out_LED = 7
 pin_out_LASER = 36
 
