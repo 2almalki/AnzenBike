@@ -10,7 +10,8 @@
 #define Lider_run_h
 struct LData
 {
-    int LidarTriger;
+    int zone1;
+    int zone2;
     int lastDistance;
 };
 
