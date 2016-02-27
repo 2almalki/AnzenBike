@@ -18,6 +18,7 @@ Av = []
 Ac = []
 startFlag = 0; 	# starts the motor if equal to 1 and stops the motor if equal to 0
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 #Motor Setup
@@ -25,41 +26,68 @@ GPIO.setup(24, GPIO.OUT) # GPIO 24 is set to be an output.
 pwm = GPIO.PWM(24, 10)   # pwm is an object to control the pins
                          # 24 is the GPIO pin number.
                          # 10 is the frequency in Hz.
+
+GPIO.setup(18, GPIO.OUT)
+
+
+#Opening the serial ports to read the ultrasonic sensors
+serialPort=serial.Serial("/dev/ttyAMA0", 9600, timeout=2, stopbits=1, parity='N')
+
 #100 readings
-while (count<100):
- 
-    #Opening the serial ports to read the ultrasonic sensors
-    serialPort=serial.Serial("/dev/ttyAMA0", 9600, timeout=2, stopbits=1, parity='N')
-    if serialPort.isOpen()== False:
-            serialPort.open()       
-    else: 
-            pass
-    
-    serialPort.flushInput()
-    
-    CV=serialPort.read(5)
-    CV = int(CV.replace("R", "") )
-    serialPort.flushInput()    
-    print (CV)
+#while (count<1000):
 
-    if(CV<30):
-        pwm.start(50)
-        pwm.ChangeDutyCycle(50)
-    elif(CV>30):
-        pwm.stop()
+previousReading = 765;
 
-    #print "Distance in cm: %(distance)s" % {"distance": CV}
-    #time.ctime()
-    #time.strftime('%l:%M%p %Z on %b %d, %Y')
-    
-    #print "%(distance)s" % {"distance": CV}
+try:
+    while True:
 
-    #n1 = dt.datetime.now()
-    #print n1
+	    if serialPort.isOpen()== False:
+	            serialPort.open()       
+	    else: 
+	            pass
+	    
+	    serialPort.flushInput()
+	    
+	    CV=serialPort.read(5)
+	    
+	    if(CV==""):
+		CV=int("1000")
+	    else:
+		CV = int(CV.replace("R", "") )
+	
+	    serialPort.flushInput()    
+	    print (CV)
+
+	    if(CV<(previousReading-2)):
+	    	GPIO.output(18,1)
+			if(CV<50):
+			    pwm.start(5)
+			    pwm.ChangeDutyCycle(100)			
+			elif(CV<100):
+			    pwm.start(5)
+			    pwm.ChangeDutyCycle(75)
+			elif(CV<150):
+			    pwm.start(5)
+			    pwm.ChangeDutyCycle(50)
+	    else:
+	        pwm.stop()
+	        GPIO.output(18,0)
+
+	    previousReading = CV
+
+	    #print "Distance in cm: %(distance)s" % {"distance": CV}
+	    #time.ctime()
+	    #time.strftime('%l:%M%p %Z on %b %d, %Y')
+	    
+	    #print "%(distance)s" % {"distance": CV}
+	
+	    #n1 = dt.datetime.now()
+    	    #print n1
 
     #Av.append(CV)
-    Ac.append(count)
-    count = count +1
+    #Ac.append(count)
+    #count = count +1
 
-pwm.stop()                # Turn PWM off
-GPIO.cleanup()            # Always clean up at the end of programs.
+except KeyboardInterrupt:
+    pwm.stop()                # Turn PWM off
+    GPIO.cleanup()            # Always clean up at the end of programs.
