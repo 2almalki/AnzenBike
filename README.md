@@ -25,8 +25,8 @@ Install by typing in terminal:
 - sudo pip install *package_name*
 
 ** Open CV Import **
+- Install Open CV using this [guide](http://www.pyimagesearch.com/2015/02/23/install-opencv-and-python-on-your-raspberry-pi-2-and-b/)
 - import argparse
-- import cv2
 - import numpy as np
 
 ** Motor Import **
