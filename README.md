@@ -10,14 +10,14 @@ This ensures that each step will be tested independantly before everything gets 
 - Ultrasonic Sensor: PIN 10, GPIO 15
 - Motor (Lidar): PIN 11, GPIO 17
 - LIDAR:
-  * SDA: PIN 13, GPIO 02
-  * SCL: PIN 15, GPIO 03
+  * SDA: PIN 3, GPIO 2
+  * SCL: PIN 5, GPIO 3
 - Zone indicator:
-  * Red (Zone 3):			PIN 12, GPIO 18 
+  * Red (Zone 3):			PIN 22, GPIO 25 
   * Yellow (Zone 2):		PIN 16, GPIO 23
-  * Green (Zone 1):			PIN 22, GPIO 24
-- LED Tailight: 		  S_PIN  3, GPIO 28
-- Laser Lane: 			  S_PIN  5, GPIO 30
+  * Green (Zone 1):			PIN 18, GPIO 24
+- LED Tailight: 		  PIN  33, GPIO 13
+- Laser Lane: 			  PIN  35, GPIO 19
 
 ### Necessary packages to be imported
 Using Raspberry Pi (type B)
