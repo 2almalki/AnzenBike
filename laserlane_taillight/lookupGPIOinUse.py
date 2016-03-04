@@ -6,8 +6,8 @@ import time
 pin_in_lidar_z1 = 22
 pin_in_lidar_z2 = 16
 pin_in_lidar_z3 = 12
-pin_out_LED = 7
-pin_out_LASER = 36
+pin_out_LED = 3
+pin_out_LASER = 5
 
 # set GPIO mode
 GPIO.setmode(GPIO.BOARD)
