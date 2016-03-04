@@ -1,7 +1,5 @@
 # ! /bin/bash
 
-clear
-
 echo "Clean up script being run now."
 
 cd /var/log
