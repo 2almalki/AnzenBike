@@ -47,10 +47,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Richard/lidarLite
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Richard/lidarLite
 
 #=============================================================================
 # Target rules for target CMakeFiles/lidarTest.dir
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
 CMakeFiles/lidarTest.dir/all:
 	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/depend
 	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles"  1 2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Desktop/Richard/lidarLite/CMakeFiles  1 2
 	@echo "Built target lidarTest"
 .PHONY : CMakeFiles/lidarTest.dir/all
 
@@ -69,9 +69,9 @@ all: CMakeFiles/lidarTest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lidarTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Richard/lidarLite/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lidarTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Richard/lidarLite/CMakeFiles 0
 .PHONY : CMakeFiles/lidarTest.dir/rule
 
 # Convenience name for target.

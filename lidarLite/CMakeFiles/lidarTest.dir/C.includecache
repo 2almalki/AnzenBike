@@ -6,21 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/Desktop/Richard/lidarLite/src/lidarLite.h
+/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.c
+lidarLite.h
+/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.h
+wiringPi.h
+-
+Lidar_run.h
+/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.h
+stdlib.h
+-
+stdio.h
+-
+
+/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.h
+
+/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.h
 stdio.h
 -
 wiringPiI2C.h
 -
 stdbool.h
--
-
-/home/pi/Desktop/Richard/lidarLite/src/lidarTest.c
-lidarLite.h
-/home/pi/Desktop/Richard/lidarLite/src/lidarLite.h
-stdlib.h
--
-stdio.h
--
-sys/time.h
 -
 

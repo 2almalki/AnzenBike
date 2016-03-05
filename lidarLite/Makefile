@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/Richard/lidarLite
+CMAKE_SOURCE_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/Richard/lidarLite
+CMAKE_BINARY_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,9 +69,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Richard/lidarLite/CMakeFiles /home/pi/Desktop/Richard/lidarLite/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Richard/lidarLite/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,6 +111,30 @@ lidarTest/fast:
 	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/build
 .PHONY : lidarTest/fast
 
+src/Lidar_run.o: src/Lidar_run.c.o
+.PHONY : src/Lidar_run.o
+
+# target to build an object file
+src/Lidar_run.c.o:
+	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/Lidar_run.c.o
+.PHONY : src/Lidar_run.c.o
+
+src/Lidar_run.i: src/Lidar_run.c.i
+.PHONY : src/Lidar_run.i
+
+# target to preprocess a source file
+src/Lidar_run.c.i:
+	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/Lidar_run.c.i
+.PHONY : src/Lidar_run.c.i
+
+src/Lidar_run.s: src/Lidar_run.c.s
+.PHONY : src/Lidar_run.s
+
+# target to generate assembly for a file
+src/Lidar_run.c.s:
+	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/Lidar_run.c.s
+.PHONY : src/Lidar_run.c.s
+
 src/lidarLite.o: src/lidarLite.c.o
 .PHONY : src/lidarLite.o
 
@@ -135,30 +159,6 @@ src/lidarLite.c.s:
 	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/lidarLite.c.s
 .PHONY : src/lidarLite.c.s
 
-src/lidarTest.o: src/lidarTest.c.o
-.PHONY : src/lidarTest.o
-
-# target to build an object file
-src/lidarTest.c.o:
-	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/lidarTest.c.o
-.PHONY : src/lidarTest.c.o
-
-src/lidarTest.i: src/lidarTest.c.i
-.PHONY : src/lidarTest.i
-
-# target to preprocess a source file
-src/lidarTest.c.i:
-	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/lidarTest.c.i
-.PHONY : src/lidarTest.c.i
-
-src/lidarTest.s: src/lidarTest.c.s
-.PHONY : src/lidarTest.s
-
-# target to generate assembly for a file
-src/lidarTest.c.s:
-	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/lidarTest.c.s
-.PHONY : src/lidarTest.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -168,12 +168,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... lidarTest"
 	@echo "... rebuild_cache"
+	@echo "... src/Lidar_run.o"
+	@echo "... src/Lidar_run.i"
+	@echo "... src/Lidar_run.s"
 	@echo "... src/lidarLite.o"
 	@echo "... src/lidarLite.i"
 	@echo "... src/lidarLite.s"
-	@echo "... src/lidarTest.o"
-	@echo "... src/lidarTest.i"
-	@echo "... src/lidarTest.s"
 .PHONY : help
 
 

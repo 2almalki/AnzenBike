@@ -4,8 +4,8 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/home/pi/Desktop/Richard/lidarLite/src/lidarLite.c" "/home/pi/Desktop/Richard/lidarLite/CMakeFiles/lidarTest.dir/src/lidarLite.c.o"
-  "/home/pi/Desktop/Richard/lidarLite/src/lidarTest.c" "/home/pi/Desktop/Richard/lidarLite/CMakeFiles/lidarTest.dir/src/lidarTest.c.o"
+  "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.c" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles/lidarTest.dir/src/Lidar_run.c.o"
+  "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.c" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles/lidarTest.dir/src/lidarLite.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 

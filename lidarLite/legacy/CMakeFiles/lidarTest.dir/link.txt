@@ -1,0 +1,1 @@
+/usr/bin/gcc      CMakeFiles/lidarTest.dir/src/lidarTest.c.o CMakeFiles/lidarTest.dir/src/lidarLite.c.o  -o lidarTest -rdynamic -lwiringPi -lwiringPiDev -lpthread 

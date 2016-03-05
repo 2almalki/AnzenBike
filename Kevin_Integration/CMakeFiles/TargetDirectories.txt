@@ -1,1 +1,0 @@
-/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles/lidarTest.dir

@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Richard/lidarLite
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Richard/lidarLite
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lidarTest.dir/depend.make
@@ -49,42 +49,42 @@ include CMakeFiles/lidarTest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lidarTest.dir/flags.make
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.o: CMakeFiles/lidarTest.dir/flags.make
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.o: src/Lidar_run.c
-	$(CMAKE_COMMAND) -E cmake_progress_report "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/lidarTest.dir/src/Lidar_run.c.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/lidarTest.dir/src/Lidar_run.c.o   -c "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.c"
+CMakeFiles/lidarTest.dir/src/lidarTest.c.o: CMakeFiles/lidarTest.dir/flags.make
+CMakeFiles/lidarTest.dir/src/lidarTest.c.o: src/lidarTest.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Desktop/Richard/lidarLite/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/lidarTest.dir/src/lidarTest.c.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/lidarTest.dir/src/lidarTest.c.o   -c /home/pi/Desktop/Richard/lidarLite/src/lidarTest.c
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lidarTest.dir/src/Lidar_run.c.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.c" > CMakeFiles/lidarTest.dir/src/Lidar_run.c.i
+CMakeFiles/lidarTest.dir/src/lidarTest.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lidarTest.dir/src/lidarTest.c.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/pi/Desktop/Richard/lidarLite/src/lidarTest.c > CMakeFiles/lidarTest.dir/src/lidarTest.c.i
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lidarTest.dir/src/Lidar_run.c.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/Lidar_run.c" -o CMakeFiles/lidarTest.dir/src/Lidar_run.c.s
+CMakeFiles/lidarTest.dir/src/lidarTest.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lidarTest.dir/src/lidarTest.c.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/pi/Desktop/Richard/lidarLite/src/lidarTest.c -o CMakeFiles/lidarTest.dir/src/lidarTest.c.s
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.requires:
-.PHONY : CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.requires
+CMakeFiles/lidarTest.dir/src/lidarTest.c.o.requires:
+.PHONY : CMakeFiles/lidarTest.dir/src/lidarTest.c.o.requires
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.provides: CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.requires
-	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.provides.build
-.PHONY : CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.provides
+CMakeFiles/lidarTest.dir/src/lidarTest.c.o.provides: CMakeFiles/lidarTest.dir/src/lidarTest.c.o.requires
+	$(MAKE) -f CMakeFiles/lidarTest.dir/build.make CMakeFiles/lidarTest.dir/src/lidarTest.c.o.provides.build
+.PHONY : CMakeFiles/lidarTest.dir/src/lidarTest.c.o.provides
 
-CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.provides.build: CMakeFiles/lidarTest.dir/src/Lidar_run.c.o
+CMakeFiles/lidarTest.dir/src/lidarTest.c.o.provides.build: CMakeFiles/lidarTest.dir/src/lidarTest.c.o
 
 CMakeFiles/lidarTest.dir/src/lidarLite.c.o: CMakeFiles/lidarTest.dir/flags.make
 CMakeFiles/lidarTest.dir/src/lidarLite.c.o: src/lidarLite.c
-	$(CMAKE_COMMAND) -E cmake_progress_report "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles" $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Desktop/Richard/lidarLite/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/lidarTest.dir/src/lidarLite.c.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/lidarTest.dir/src/lidarLite.c.o   -c "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.c"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/lidarTest.dir/src/lidarLite.c.o   -c /home/pi/Desktop/Richard/lidarLite/src/lidarLite.c
 
 CMakeFiles/lidarTest.dir/src/lidarLite.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lidarTest.dir/src/lidarLite.c.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.c" > CMakeFiles/lidarTest.dir/src/lidarLite.c.i
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/pi/Desktop/Richard/lidarLite/src/lidarLite.c > CMakeFiles/lidarTest.dir/src/lidarLite.c.i
 
 CMakeFiles/lidarTest.dir/src/lidarLite.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lidarTest.dir/src/lidarLite.c.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/src/lidarLite.c" -o CMakeFiles/lidarTest.dir/src/lidarLite.c.s
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/pi/Desktop/Richard/lidarLite/src/lidarLite.c -o CMakeFiles/lidarTest.dir/src/lidarLite.c.s
 
 CMakeFiles/lidarTest.dir/src/lidarLite.c.o.requires:
 .PHONY : CMakeFiles/lidarTest.dir/src/lidarLite.c.o.requires
@@ -97,13 +97,13 @@ CMakeFiles/lidarTest.dir/src/lidarLite.c.o.provides.build: CMakeFiles/lidarTest.
 
 # Object files for target lidarTest
 lidarTest_OBJECTS = \
-"CMakeFiles/lidarTest.dir/src/Lidar_run.c.o" \
+"CMakeFiles/lidarTest.dir/src/lidarTest.c.o" \
 "CMakeFiles/lidarTest.dir/src/lidarLite.c.o"
 
 # External object files for target lidarTest
 lidarTest_EXTERNAL_OBJECTS =
 
-lidarTest: CMakeFiles/lidarTest.dir/src/Lidar_run.c.o
+lidarTest: CMakeFiles/lidarTest.dir/src/lidarTest.c.o
 lidarTest: CMakeFiles/lidarTest.dir/src/lidarLite.c.o
 lidarTest: CMakeFiles/lidarTest.dir/build.make
 lidarTest: CMakeFiles/lidarTest.dir/link.txt
@@ -114,7 +114,7 @@ lidarTest: CMakeFiles/lidarTest.dir/link.txt
 CMakeFiles/lidarTest.dir/build: lidarTest
 .PHONY : CMakeFiles/lidarTest.dir/build
 
-CMakeFiles/lidarTest.dir/requires: CMakeFiles/lidarTest.dir/src/Lidar_run.c.o.requires
+CMakeFiles/lidarTest.dir/requires: CMakeFiles/lidarTest.dir/src/lidarTest.c.o.requires
 CMakeFiles/lidarTest.dir/requires: CMakeFiles/lidarTest.dir/src/lidarLite.c.o.requires
 .PHONY : CMakeFiles/lidarTest.dir/requires
 
@@ -123,6 +123,6 @@ CMakeFiles/lidarTest.dir/clean:
 .PHONY : CMakeFiles/lidarTest.dir/clean
 
 CMakeFiles/lidarTest.dir/depend:
-	cd "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration" "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/CMakeFiles/lidarTest.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/pi/Desktop/Richard/lidarLite && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/Richard/lidarLite /home/pi/Desktop/Richard/lidarLite /home/pi/Desktop/Richard/lidarLite /home/pi/Desktop/Richard/lidarLite /home/pi/Desktop/Richard/lidarLite/CMakeFiles/lidarTest.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lidarTest.dir/depend
 

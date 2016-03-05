@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration
+# Install script for directory: /home/pi/Desktop/Richard/lidarLite
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
-FILE(WRITE "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/home/pi/Desktop/Richard/lidarLite/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/home/pi/Desktop/Abdul Folder/AnzenBike/Kevin_Integration/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/home/pi/Desktop/Richard/lidarLite/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

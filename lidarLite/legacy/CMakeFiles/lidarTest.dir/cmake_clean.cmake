@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/lidarTest.dir/src/Lidar_run.c.o"
+  "CMakeFiles/lidarTest.dir/src/lidarTest.c.o"
   "CMakeFiles/lidarTest.dir/src/lidarLite.c.o"
   "lidarTest.pdb"
   "lidarTest"
