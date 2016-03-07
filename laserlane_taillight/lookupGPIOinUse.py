@@ -1,6 +1,8 @@
 # import RPi.GPIO module
 import RPi.GPIO as GPIO
 import time
+import threading
+from threading import Thread
 
 # set pins corresponding to each Zone
 pin_in_lidar_z1 = 22
@@ -20,6 +22,7 @@ GPIO.setup(pin_out_LED,GPIO.OUT)
 GPIO.setup(pin_out_LASER,GPIO.OUT)
 
 # variables
+global flash_speed
 flash_speed = 0
 
 # function to find which zone is active
@@ -28,39 +31,40 @@ def closest_zone():
     if GPIO.input(pin_in_lidar_z3):
         # something detected in Z3
         print "\nZone 3 - detected"
-        return 0.125
+        flash_speed = 0.125
     elif GPIO.input(pin_in_lidar_z2):
         # nothing detected in Z3, something detected in Z2
         print "\nZone 2 - detected"
-        return 0.17
+        flash_speed = 0.17
     elif GPIO.input(pin_in_lidar_z1):
          # nothing detected in Z3,Z2, something detected in Z1
          print "\nZone 1 - detected"
-         return 0.25
+         flash_speed = 0.25
     else:
         print "\nNothing detected"
-        return 0
+        flash_speed = 0
 
-try:
-    # main loop
-    while True:
-        flash_speed = closest_zone()  # update to the most recent zone detectd
-
-        # turn on LED / Laser
-        if flash_speed < 0.25: #in z2,3
-            GPIO.output(pin_out_LED, True)
-            GPIO.output(pin_out_LASER,True)
-        else:
-            GPIO.output(pin_out_LED, True)
-            GPIO.output(pin_out_LASER,False)
-
-        time.sleep(flash_speed)
-
-        #turn off laser/taillight
-        GPIO.output(pin_out_LED, False)
+def tailight_laser_flash():
+    # turn on LED / Laser
+    if flash_speed < 0.25: #in z2,3
+        GPIO.output(pin_out_LED, True)
+        GPIO.output(pin_out_LASER,True)
+    else:
+        GPIO.output(pin_out_LED, True)
         GPIO.output(pin_out_LASER,False)
 
-        time.sleep(flash_speed)
+    time.sleep(flash_speed)
+
+    #turn off laser/taillight
+    GPIO.output(pin_out_LED, False)
+    GPIO.output(pin_out_LASER,False)
+
+    time.sleep(flash_speed)
+
+try:
+    # main
+    Thread(target = closest_zone()).start()
+    Thread(target = tailight_laser_flash()).start()
 
 except KeyboardInterrupt:
     # code you want to run before the program
