@@ -10,12 +10,12 @@ import subprocess
 import RPi.GPIO as GPIO
 import datetime as dt
 
-count = 0;  # number of data points taken during collectin interval
-max = 250;  # maximum distance for motor vibration
-dec = 62.5;  # decremental value for duty cycle ranges
-Av = []
-Ac = []
-startFlag = 0;  # starts the motor if equal to 1 and stops the motor if equal to 0
+#count = 0;  # number of data points taken during collectin interval
+#max = 250;  # maximum distance for motor vibration
+#dec = 62.5;  # decremental value for duty cycle ranges
+#Av = []
+#Ac = []
+#startFlag = 0;  # starts the motor if equal to 1 and stops the motor if equal to 0
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -26,7 +26,8 @@ pwm = GPIO.PWM(24, 10)  # pwm is an object to control the pins
 # 24 is the GPIO pin number.
 # 10 is the frequency in Hz.
 
-GPIO.setup(18, GPIO.OUT)
+zonepin = 22;
+GPIO.setup(zonepin, GPIO.OUT)
 
 # Opening the serial ports to read the ultrasonic sensors
 serialPort = serial.Serial("/dev/ttyAMA0", 9600, timeout=2, stopbits=1, parity='N')
@@ -56,22 +57,28 @@ try:
         serialPort.flushInput()
         print (CV)
 
-        if (CV < (previousReading - 5)):
-            GPIO.output(18, 1)
-            if (CV < 50):
-                pwm.start(5)
-                pwm.ChangeDutyCycle(100)
-            elif (CV < 100):
-                pwm.start(5)
-                pwm.ChangeDutyCycle(75)
-            elif (CV < 150):
-                pwm.start(5)
-                pwm.ChangeDutyCycle(50)
-    else:
-        pwm.stop()
-        GPIO.output(18, 0)
+		# A 20km/h difference between the vehicle and bike translates to 56cm/reading
+        if (CV < (previousReading - 56)):
+		
+            # if (CV < 50):
+                # pwm.start(5)
+                # pwm.ChangeDutyCycle(100)
+            # elif (CV < 100):
+                # pwm.start(5)
+                # pwm.ChangeDutyCycle(75)
+            # elif (CV < 150):
+                # pwm.start(5)
+                # pwm.ChangeDutyCycle(50)
+			
+            GPIO.output(zonepin, True)
+			pwm.start(5)
+            pwm.ChangeDutyCycle(100)
+			
+		else:
+			pwm.stop()
+            GPIO.output(zonepin, False)
 
-    previousReading = CV
+		previousReading = CV
 
 # print "Distance in cm: %(distance)s" % {"distance": CV}
 # time.ctime()
@@ -91,4 +98,5 @@ except KeyboardInterrupt:
 
 finally:
     pwm.stop()  # Turn PWM off
+    GPIO.output(zonepin, False)
     GPIO.cleanup()  # Always clean up at the end of programs.
