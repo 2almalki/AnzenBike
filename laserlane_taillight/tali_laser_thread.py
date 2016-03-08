@@ -22,12 +22,12 @@ GPIO.setup(pin_out_LED,GPIO.OUT)
 GPIO.setup(pin_out_LASER,GPIO.OUT)
 
 # variables
-global flash_speed
 flash_speed = 0
 
 # function to find which zone is active
 def closest_zone():
     # TODO: implement logging instead of print
+    global flash_speed
     if GPIO.input(pin_in_lidar_z3):
         # something detected in Z3
         print "\nZone 3 - detected"
@@ -38,8 +38,8 @@ def closest_zone():
         flash_speed = 0.17
     elif GPIO.input(pin_in_lidar_z1):
          # nothing detected in Z3,Z2, something detected in Z1
-         print "\nZone 1 - detected"
-         flash_speed = 0.25
+        print "\nZone 1 - detected"
+        flash_speed = 0.25
     else:
         print "\nNothing detected"
         flash_speed = 0
