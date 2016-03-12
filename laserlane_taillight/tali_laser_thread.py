@@ -1,6 +1,6 @@
 # import RPi.GPIO module
 import RPi.GPIO as GPIO
-import time
+from time import sleep
 import threading
 from threading import Thread
 
@@ -52,10 +52,10 @@ def taillight_flash():
         # turn on LED / Laser
         GPIO.output(pin_out_LED, True)
         # sleep for flash time
-        time.sleep(flash_speed)
+        sleep(flash_speed)
         # turn off laser/taillight
         GPIO.output(pin_out_LED, False)
-        time.sleep(flash_speed)
+        sleep(flash_speed)
 
 
 def laser_flash():
@@ -64,9 +64,9 @@ def laser_flash():
         if 0.15 <= flash_speed <= 0.23:
             # in z2
             GPIO.output(pin_out_LASER, True)
-            time.sleep(flash_speed)
+            sleep(flash_speed)
             GPIO.output(pin_out_LASER, False)
-            time.sleep(flash_speed)
+            sleep(flash_speed)
         elif 0.10 <= flash_speed <= 0.14:
             # in z1
             GPIO.output(pin_out_LASER, True)

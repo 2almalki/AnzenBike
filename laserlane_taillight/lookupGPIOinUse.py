@@ -1,6 +1,6 @@
 # import RPi.GPIO module
 import RPi.GPIO as GPIO
-import time
+from time import sleep
 
 # set pins corresponding to each Zone
 pin_in_lidar_z1 = 18
@@ -54,13 +54,13 @@ try:
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,False)
 
-        time.sleep(flash_speed)
+        sleep(flash_speed)
 
         #turn off laser/taillight
         GPIO.output(pin_out_LED, False)
         GPIO.output(pin_out_LASER,False)
 
-        time.sleep(flash_speed)
+        sleep(flash_speed)
 
 except KeyboardInterrupt:
     # code you want to run before the program
