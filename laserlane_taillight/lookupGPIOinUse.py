@@ -3,14 +3,14 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # set pins corresponding to each Zone
-pin_in_lidar_z1 = 18
-pin_in_lidar_z2 = 16
-pin_in_lidar_z3 = 22
-pin_out_LED = 33
-pin_out_LASER = 35
+pin_in_lidar_z1 = 24
+pin_in_lidar_z2 = 23
+pin_in_lidar_z3 = 25
+pin_out_LED = 13
+pin_out_LASER = 19
 
 # set GPIO mode
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # set pins as input in order to read status
 GPIO.setup(pin_in_lidar_z1,GPIO.IN)
 GPIO.setup(pin_in_lidar_z2,GPIO.IN)
