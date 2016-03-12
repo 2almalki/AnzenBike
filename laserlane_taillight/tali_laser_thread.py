@@ -14,15 +14,16 @@ pin_out_LASER = 35
 # set GPIO mode
 GPIO.setmode(GPIO.BOARD)
 # set pins as input in order to read status
-GPIO.setup(pin_in_lidar_z1,GPIO.IN)
-GPIO.setup(pin_in_lidar_z2,GPIO.IN)
-GPIO.setup(pin_in_lidar_z3,GPIO.IN)
+GPIO.setup(pin_in_lidar_z1, GPIO.IN)
+GPIO.setup(pin_in_lidar_z2, GPIO.IN)
+GPIO.setup(pin_in_lidar_z3, GPIO.IN)
 # output LED and Laser
-GPIO.setup(pin_out_LED,GPIO.OUT)
-GPIO.setup(pin_out_LASER,GPIO.OUT)
+GPIO.setup(pin_out_LED, GPIO.OUT)
+GPIO.setup(pin_out_LASER, GPIO.OUT)
 
 # variables
 flash_speed = 0
+
 
 # function to find which zone is active
 def closest_zone():
@@ -30,41 +31,51 @@ def closest_zone():
     global flash_speed
     if GPIO.input(pin_in_lidar_z3):
         # something detected in Z3
-        print "\nZone 3 - detected"
+        # print "\nZone 3 - detected"
         flash_speed = 0.125
     elif GPIO.input(pin_in_lidar_z2):
         # nothing detected in Z3, something detected in Z2
-        print "\nZone 2 - detected"
+        # print "\nZone 2 - detected"
         flash_speed = 0.17
     elif GPIO.input(pin_in_lidar_z1):
-         # nothing detected in Z3,Z2, something detected in Z1
-        print "\nZone 1 - detected"
+        # nothing detected in Z3,Z2, something detected in Z1
+        # print "\nZone 1 - detected"
         flash_speed = 0.25
     else:
-        print "\nNothing detected"
+        # print "\nNothing detected"
         flash_speed = 0
 
-def tailight_laser_flash():
+
+def taillight_flash():
     # turn on LED / Laser
-    if flash_speed < 0.25: #in z2,3
-        GPIO.output(pin_out_LED, True)
-        GPIO.output(pin_out_LASER,True)
-    else:
-        GPIO.output(pin_out_LED, True)
-        GPIO.output(pin_out_LASER,False)
-
+    GPIO.output(pin_out_LED, True)
+    # sleep for flash time
     time.sleep(flash_speed)
-
-    #turn off laser/taillight
+    # turn off laser/taillight
     GPIO.output(pin_out_LED, False)
-    GPIO.output(pin_out_LASER,False)
 
     time.sleep(flash_speed)
+
+
+def laser_flash():
+    # flash laser in z2, solid in z1
+    if 0.15 <= flash_speed <= 0.23:
+        # in z2
+        GPIO.output(pin_out_LASER, True)
+        time.sleep(flash_speed)
+        GPIO.output(pin_out_LASER, False)
+    elif 0.10 <= flash_speed <= 0.14:
+        # in z1
+        GPIO.output(pin_out_LASER, True)
+    else:
+        # not in z1 or z2
+        GPIO.output(pin_out_LASER, False)
 
 try:
     # main
-    Thread(target = closest_zone()).start()
-    Thread(target = tailight_laser_flash()).start()
+    Thread(target=closest_zone()).start()
+    Thread(target=taillight_flash()).start()
+    Thread(target=laser_flash()).start()
 
 except KeyboardInterrupt:
     # code you want to run before the program
@@ -79,4 +90,4 @@ except KeyboardInterrupt:
 
 finally:
     print "\n Cleanup GPIO"
-    GPIO.cleanup() # clean exit
+    GPIO.cleanup()  # clean exit
