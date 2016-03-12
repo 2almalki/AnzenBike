@@ -76,9 +76,15 @@ def laser_flash():
 
 try:
     # main
-    Thread(target=closest_zone()).start()
-    Thread(target=taillight_flash()).start()
-    Thread(target=laser_flash()).start()
+    # Thread(target=closest_zone()).start()
+    # Thread(target=taillight_flash()).start()
+    # Thread(target=laser_flash()).start()
+    t1 = threading.Thread(target=closest_zone())
+    t1.start()
+    t2 = threading.Thread(target=taillight_flash())
+    t2.start()
+    t3 = threading.Thread(target=laser_flash())
+    t3.start()
 
 except KeyboardInterrupt:
     # code you want to run before the program
