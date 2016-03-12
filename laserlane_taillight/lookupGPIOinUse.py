@@ -3,11 +3,11 @@ import RPi.GPIO as GPIO
 import time
 
 # set pins corresponding to each Zone
-pin_in_lidar_z1 = 22
+pin_in_lidar_z1 = 18
 pin_in_lidar_z2 = 16
-pin_in_lidar_z3 = 12
-pin_out_LED = 3
-pin_out_LASER = 5
+pin_in_lidar_z3 = 22
+pin_out_LED = 33
+pin_out_LASER = 35
 
 # set GPIO mode
 GPIO.setmode(GPIO.BOARD)
@@ -44,10 +44,10 @@ def closest_zone():
 try:
     # main loop
     while True:
-        flash_speed = closest_zone()  # update to the most recent zone detectd
+        flash_speed = closest_zone()  # update to the most recent zone detected
 
         # turn on LED / Laser
-        if flash_speed < 0.25: #in z2,3
+        if flash_speed < 0.25:  # in z2,3
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
         else:

@@ -6,8 +6,8 @@ from time import sleep
 # set GPIO mode (BCM or BOARD)
 GPIO.setmode(GPIO.BCM)
 z1_pin = 18
-z2_pin = 23
-z3_pin = 24
+z2_pin = 16
+z3_pin = 22
 delay = 0.5
 
 # set up output GPIO pins

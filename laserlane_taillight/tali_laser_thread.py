@@ -5,11 +5,11 @@ import threading
 from threading import Thread
 
 # set pins corresponding to each Zone
-pin_in_lidar_z1 = 22
+pin_in_lidar_z1 = 18
 pin_in_lidar_z2 = 16
-pin_in_lidar_z3 = 12
-pin_out_LED = 3
-pin_out_LASER = 5
+pin_in_lidar_z3 = 22
+pin_out_LED = 33
+pin_out_LASER = 35
 
 # set GPIO mode
 GPIO.setmode(GPIO.BOARD)
