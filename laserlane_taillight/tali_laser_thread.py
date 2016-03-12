@@ -1,7 +1,8 @@
 # import RPi.GPIO module
 import RPi.GPIO as GPIO
 from time import sleep
-import thread
+import threading
+from threading import Thread
 
 # set pins corresponding to each Zone
 pin_in_lidar_z1 = 24
@@ -48,7 +49,6 @@ def closest_zone():
 
 def taillight_flash():
     while True:
-        x = flash_speed
         # turn on LED / Laser
         GPIO.output(pin_out_LED, True)
         # sleep for flash time
@@ -76,9 +76,9 @@ def laser_flash():
 
 try:
     # main
-    thread.start_new_thread(closest_zone, ())
-    thread.start_new_thread(taillight_flash, ())
-    thread.start_new_thread(laser_flash, ())
+    Thread(target=closest_zone()).start()
+    Thread(target=taillight_flash()).start()
+    Thread(target=laser_flash()).start()
 
 except KeyboardInterrupt:
     # code you want to run before the program
