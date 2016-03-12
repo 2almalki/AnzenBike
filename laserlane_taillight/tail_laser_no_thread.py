@@ -52,7 +52,7 @@ try:
             GPIO.output(pin_out_LASER,True)
             sleep(flash_speed)
             # laser will stil be true
-            GPIO.output(pin_out_LASER,False)
+            GPIO.output(pin_out_LED,False)
         elif flash_speed == 0.17: # in z2
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
