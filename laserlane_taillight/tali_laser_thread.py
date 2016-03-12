@@ -29,47 +29,50 @@ flash_speed = 0
 def closest_zone():
     # TODO: implement logging instead of print
     global flash_speed
-    if GPIO.input(pin_in_lidar_z3):
-        # something detected in Z3
-        # print "\nZone 3 - detected"
-        flash_speed = 0.125
-    elif GPIO.input(pin_in_lidar_z2):
-        # nothing detected in Z3, something detected in Z2
-        # print "\nZone 2 - detected"
-        flash_speed = 0.17
-    elif GPIO.input(pin_in_lidar_z1):
-        # nothing detected in Z3,Z2, something detected in Z1
-        # print "\nZone 1 - detected"
-        flash_speed = 0.25
-    else:
-        # print "\nNothing detected"
-        flash_speed = 0
+    while True:
+        if GPIO.input(pin_in_lidar_z3):
+            # something detected in Z3
+            # print "\nZone 3 - detected"
+            flash_speed = 0.125
+        elif GPIO.input(pin_in_lidar_z2):
+            # nothing detected in Z3, something detected in Z2
+            # print "\nZone 2 - detected"
+            flash_speed = 0.17
+        elif GPIO.input(pin_in_lidar_z1):
+            # nothing detected in Z3,Z2, something detected in Z1
+            # print "\nZone 1 - detected"
+            flash_speed = 0.25
+        else:
+            # print "\nNothing detected"
+            flash_speed = 0
 
 
 def taillight_flash():
-    # turn on LED / Laser
-    GPIO.output(pin_out_LED, True)
-    # sleep for flash time
-    time.sleep(flash_speed)
-    # turn off laser/taillight
-    GPIO.output(pin_out_LED, False)
-
-    time.sleep(flash_speed)
+    while True:
+        # turn on LED / Laser
+        GPIO.output(pin_out_LED, True)
+        # sleep for flash time
+        time.sleep(flash_speed)
+        # turn off laser/taillight
+        GPIO.output(pin_out_LED, False)
+        time.sleep(flash_speed)
 
 
 def laser_flash():
-    # flash laser in z2, solid in z1
-    if 0.15 <= flash_speed <= 0.23:
-        # in z2
-        GPIO.output(pin_out_LASER, True)
-        time.sleep(flash_speed)
-        GPIO.output(pin_out_LASER, False)
-    elif 0.10 <= flash_speed <= 0.14:
-        # in z1
-        GPIO.output(pin_out_LASER, True)
-    else:
-        # not in z1 or z2
-        GPIO.output(pin_out_LASER, False)
+    while True:
+        # flash laser in z2, solid in z1
+        if 0.15 <= flash_speed <= 0.23:
+            # in z2
+            GPIO.output(pin_out_LASER, True)
+            time.sleep(flash_speed)
+            GPIO.output(pin_out_LASER, False)
+            time.sleep(flash_speed)
+        elif 0.10 <= flash_speed <= 0.14:
+            # in z1
+            GPIO.output(pin_out_LASER, True)
+        else:
+            # not in z1 or z2
+            GPIO.output(pin_out_LASER, False)
 
 try:
     # main
