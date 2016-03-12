@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # set GPIO mode (BCM or BOARD)
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 z1_pin = 18
 z2_pin = 16
 z3_pin = 22
