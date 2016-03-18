@@ -8,6 +8,7 @@ pin_in_lidar_z2 = 23
 pin_in_lidar_z3 = 25
 pin_out_LED = 13
 pin_out_LASER = 19
+pin_out_LASER_2 = 36
 
 # set GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -18,6 +19,7 @@ GPIO.setup(pin_in_lidar_z3,GPIO.IN)
 # output LED and Laser
 GPIO.setup(pin_out_LED,GPIO.OUT)
 GPIO.setup(pin_out_LASER,GPIO.OUT)
+GPIO.setup(pin_out_LASER_2,GPIO.OUT)
 
 # variables
 flash_speed = 0.25
@@ -28,11 +30,11 @@ def closest_zone():
     if GPIO.input(pin_in_lidar_z3):
         # something detected in Z3
         print "\nZone 3 - detected"
-        return 0.125
+        return 0.075
     elif GPIO.input(pin_in_lidar_z2):
         # nothing detected in Z3, something detected in Z2
         print "\nZone 2 - detected"
-        return 0.17
+        return 0.125
     elif GPIO.input(pin_in_lidar_z1):
          # nothing detected in Z3,Z2, something detected in Z1
          print "\nZone 1 - detected"
@@ -47,23 +49,28 @@ try:
         flash_speed = closest_zone()  # update to the most recent zone detected
 
         # turn on LED / Laser
-        if flash_speed == 0.125:  # in z3
+        if flash_speed == 0.075:  # in z3
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
+			GPIO.output(pin_out_LASER_2,True)
             sleep(flash_speed)
             # laser will stil be true
             GPIO.output(pin_out_LED,False)
-        elif flash_speed == 0.17: # in z2
+        elif flash_speed == 0.125: # in z2
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
+			GPIO.output(pin_out_LASER_2,True)
             sleep(flash_speed)
             GPIO.output(pin_out_LED, False)
+			GPIO.output(pin_out_LASER_2,False)
             GPIO.output(pin_out_LASER,False)
         else: # in z1 or nothing detected
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,False)
+			GPIO.output(pin_out_LASER_2,False)
             sleep(flash_speed)
             GPIO.output(pin_out_LED, False)
+			GPIO.output(pin_out_LASER_2,False)
             # laser will still be off
 
         sleep(flash_speed) # need for the complete flash effect

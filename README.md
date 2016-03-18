@@ -17,7 +17,8 @@ This ensures that each step will be tested independantly before everything gets 
   * Yellow (Zone 2):		PIN 16, GPIO 23
   * Green (Zone 1):			PIN 18, GPIO 24
 - LED Tailight: 		  PIN  33, GPIO 13
-- Laser Lane: 			  PIN  35, GPIO 19
+- Laser Lane left: 			  PIN  35, GPIO 19
+- Laser Lane right: 			  PIN  37, GPIO 36
 
 ### Necessary packages to be imported
 Using Raspberry Pi (type B)
