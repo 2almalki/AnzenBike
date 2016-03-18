@@ -20,9 +20,9 @@ import datetime as dt
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-# Motor Setup
-GPIO.setup(24, GPIO.OUT)  # GPIO 24 is set to be an output.
-pwm = GPIO.PWM(24, 10)  # pwm is an object to control the pins
+# Vibration Motor Setup
+GPIO.setup(22, GPIO.OUT)  # GPIO 24 is set to be an output.
+pwm = GPIO.PWM(22, 10)  # pwm is an object to control the pins
 # 24 is the GPIO pin number.
 # 10 is the frequency in Hz.
 

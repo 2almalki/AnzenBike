@@ -6,7 +6,7 @@ These steps will be combined into one project at the end.
 This ensures that each step will be tested independantly before everything gets intergrated together.
 
 ## Pin Layout
-- Vibrating motor: PIN 18, GPIO 24
+- Vibrating motor: PIN 15, GPIO 22
 - Ultrasonic Sensor: PIN 10, GPIO 15
 - Motor (Lidar): PIN 11, GPIO 17
 - LIDAR:
