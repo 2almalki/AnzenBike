@@ -21,12 +21,12 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 # Motor Setup
-GPIO.setup(17, GPIO.OUT)  # GPIO 24 is set to be an output.
-pwm = GPIO.PWM(17, 10)  # pwm is an object to control the pins
+GPIO.setup(24, GPIO.OUT)  # GPIO 24 is set to be an output.
+pwm = GPIO.PWM(24, 10)  # pwm is an object to control the pins
 # 24 is the GPIO pin number.
 # 10 is the frequency in Hz.
 
-zonepin = 27;
+zonepin = 25;
 GPIO.setup(zonepin, GPIO.OUT)
 
 # Opening the serial ports to read the ultrasonic sensors
@@ -58,7 +58,7 @@ try:
         print (CV)
 
 		# A 20km/h difference between the vehicle and bike translates to 56cm/reading
-        if (CV < (previousReading - 56)):
+        if (CV < (previousReading - 10)):
 		
             # if (CV < 50):
                 # pwm.start(5)
