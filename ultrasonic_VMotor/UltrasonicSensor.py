@@ -57,8 +57,8 @@ try:
         serialPort.flushInput()
         print (CV)
 
-		# A 20km/h difference between the vehicle and bike translates to 56cm/reading
-        if (CV < (previousReading - 10)):
+	# A 20km/h difference between the vehicle and bike translates to 56cm/reading
+        if (CV < (previousReading - 60)):
 		
             # if (CV < 50):
                 # pwm.start(5)
@@ -71,14 +71,14 @@ try:
                 # pwm.ChangeDutyCycle(50)
 			
             GPIO.output(zonepin, True)
-			pwm.start(5)
+	    pwm.start(5)
             pwm.ChangeDutyCycle(100)
-			
-		else:
-			pwm.stop()
+	    time.sleep(0.4)		
+	else:
+	    pwm.stop()
             GPIO.output(zonepin, False)
 
-		previousReading = CV
+	previousReading = CV
 
 # print "Distance in cm: %(distance)s" % {"distance": CV}
 # time.ctime()
