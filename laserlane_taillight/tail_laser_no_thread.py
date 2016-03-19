@@ -8,7 +8,7 @@ pin_in_lidar_z2 = 23
 pin_in_lidar_z3 = 25
 pin_out_LED = 13
 pin_out_LASER = 19
-pin_out_LASER_2 = 36
+pin_out_LASER_2 = 26
 
 # set GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -52,25 +52,25 @@ try:
         if flash_speed == 0.075:  # in z3
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
-			GPIO.output(pin_out_LASER_2,True)
+	    GPIO.output(pin_out_LASER_2,True)
             sleep(flash_speed)
             # laser will stil be true
             GPIO.output(pin_out_LED,False)
         elif flash_speed == 0.125: # in z2
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,True)
-			GPIO.output(pin_out_LASER_2,True)
+	    GPIO.output(pin_out_LASER_2,True)
             sleep(flash_speed)
             GPIO.output(pin_out_LED, False)
-			GPIO.output(pin_out_LASER_2,False)
+	    GPIO.output(pin_out_LASER_2,False)
             GPIO.output(pin_out_LASER,False)
         else: # in z1 or nothing detected
             GPIO.output(pin_out_LED, True)
             GPIO.output(pin_out_LASER,False)
-			GPIO.output(pin_out_LASER_2,False)
+	    GPIO.output(pin_out_LASER_2,False)
             sleep(flash_speed)
             GPIO.output(pin_out_LED, False)
-			GPIO.output(pin_out_LASER_2,False)
+	    GPIO.output(pin_out_LASER_2,False)
             # laser will still be off
 
         sleep(flash_speed) # need for the complete flash effect
