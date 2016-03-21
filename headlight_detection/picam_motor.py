@@ -20,11 +20,6 @@ msPerCycle = 1000 / frequencyHertz
 frameWidth = 320
 frameHeight = 240
 
-previousX = 0
-previousY = 0
-previousW = 0
-previousH = 0
-
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video",
@@ -74,6 +69,7 @@ def removeUnwantedColor(originalImage,updateImage):
 
 		# Isolation of unwanted color
 		unwantedColor = cv2.bitwise_and(originalImage, blurredImage, mask = mask)
+		# grayscaleImage = cv2.cvtColor(unwantedColor, cv2.COLOR_BGR2GRAY)
 		invert = cv2.bitwise_not(unwantedColor)
 
 		updateImage = cv2.bitwise_and(updateImage, invert)
@@ -144,7 +140,7 @@ try:
 		
 		# Reference Point - (Location of Cyclist)
 		refPtX = frameWidth/2
-		refPtY = frameHeight*0.85
+		refPtY = frameHeight
 		
 		# if we are viewing a video and we did not grab a
 		# frame, then we have reached the end of the video
@@ -156,7 +152,6 @@ try:
 		imageCopy = image.copy()
 		gray = cv2.cvtColor(imageCopy, cv2.COLOR_BGR2GRAY)
 		(threshPt,maxBinNum,maxPixel) = getHistData(gray)
-		# print "Most Pixels are in bin",maxBinNum
 
 		if (maxBinNum > 10):
 			# If the camera is in a bright settings, the motor will be set to a default position
@@ -165,12 +160,13 @@ try:
 
 		else:
 			mask = np.zeros((frameHeight, frameWidth, 3), dtype = "uint8")
-			## Pentagon mask
-			# pts = np.array([[mask.shape[1]*(0.35),mask.shape[0]*(0.15)],[mask.shape[1]*(0.65),mask.shape[0]*(0.15)],[mask.shape[1]*(0.9),mask.shape[0]*(0.8)],[mask.shape[1]*(0.5),mask.shape[0]*(0.85)],[mask.shape[1]*(0.1),mask.shape[0]*(0.8)]], np.int32)
-			pts = np.array([[mask.shape[1]*(0.35),mask.shape[0]*(0.35)],[mask.shape[1]*(0.65),mask.shape[0]*(0.35)],[mask.shape[1]*(0.8),mask.shape[0]*(0.6)],[mask.shape[1]*(0.5),mask.shape[0]*(0.85)],[mask.shape[1]*(0.2),mask.shape[0]*(0.6)]], np.int32)
+			# ## Pentagon
+			pts = np.array([[mask.shape[1]*(0.35),mask.shape[0]*(0.15)],[mask.shape[1]*(0.65),mask.shape[0]*(0.15)],[mask.shape[1]*(0.985),mask.shape[0]*(0.8)],[mask.shape[1]*(0.5),mask.shape[0]*(0.985)],[mask.shape[1]*(0.015),mask.shape[0]*(0.8)]], np.int32)
 			pts = pts.reshape((-1,1,2))
 			cv2.fillConvexPoly(mask,pts,(255,255,255),1)
 			masked = cv2.bitwise_and(image, mask)
+			# cv2.imshow("Masked", thresh)
+			# cv2.waitKey(0)
 			gray = cv2.cvtColor(masked, cv2.COLOR_BGR2GRAY)
 			blur = cv2.GaussianBlur(gray, (9, 9), 0)
 			(T, thresh) = cv2.threshold(blur, threshPt, 255, cv2.THRESH_BINARY)
@@ -184,51 +180,25 @@ try:
 			nearY = 0;
 			nearW = 0;
 			nearH = 0;
-			# nearDistance = 5000
+			nearDistance = 5000
 			
 			for (i, c) in enumerate(cnts):
 				(x, y, w, h) = cv2.boundingRect(c)
-				# distance = getDistance((x+w/2),(y+h/2),refPtX,refPtY)
-				if ((y+h/2)>nearY and (w>frameWidth*0.02) and (h>frameHeight*0.02)):
+				distance = getDistance((x+w/2),(y+h/2),refPtX,refPtY)
+				if ((y+h/2)>nearY):
 					nearX = x
 					nearY = y
 					nearW = w
 					nearH = h
-					# nearDistance = distance
+					nearDistance = distance
 
-			if (previousX == 0 and previousY == 0):
-				previousX = nearX
-				previousY = nearY
-				previousW = nearW
-				previousH = nearH
+				lightSource = image[y:y + h, x:x + w]
 
-			# Draw Rectangle Box around target
-			if (nearX>0 or nearY>0):
-				if ((nearX>(previousX-0.1*frameWidth)) and (nearX<(previousX+0.1*frameWidth)) and \
-					(nearY>(previousY-0.1*frameHeight)) and (nearY<(previousX+0.1*frameHeight))):
-					
-					cv2.rectangle(image,(nearX,nearY),(nearX+nearW,nearY+nearH),(0,255,0),2)
-					cv2.line(image,(nearX+nearW/2,nearY+nearH),(refPtX,refPtY),(0,255,0))
-					# Position the motor
-					angle = getAngle((nearX+nearW/2),(nearY+nearH/2),refPtX,refPtY)
-					if(angle>=50 and angle<=130):
-						moveMotor(angle)
-					
-				else:
-					
-					cv2.rectangle(image,(previousX,previousY),(previousX+previousW,previousY+previousH),(0,255,0),2)
-					cv2.line(image,(previousX+previousW/2,previousY+previousH),(refPtX,refPtY),(0,255,0))
-					# Position the motor
-					angle = getAngle((previousX+previousW/2),(previousY+previousH/2),refPtX,refPtY)
-					if(angle>=50 and angle<=130):
-						moveMotor(angle)
-
-				previousX = nearX
-				previousY = nearY
-				previousW = nearW
-				previousH = nearH
-
-
+			if (nearX>0 or nearY>0) and nearDistance>10:
+				cv2.rectangle(image,(nearX,nearY),(nearX+nearW,nearY+nearH),(0,255,0),2)
+				cv2.line(image,(nearX+nearW/2,nearY+nearH),(refPtX,refPtY),(0,255,0))
+				moveMotor(getAngle((nearX+nearW/2),(nearY+nearH/2),refPtX,refPtY))
+			# frame = cv2.bitwise_and(frame, mask)
 			cv2.imshow("Canny", canny)
 			cv2.imshow("Frame", image)
 			cv2.imshow("Gray", gray)
