@@ -1,6 +1,5 @@
 # Software code that checks the sensors for distance and outputs according duty cycle
 
-#import wiringpi
 import wave
 import time
 import serial
@@ -59,8 +58,8 @@ try:
         # print (CV)
 
 	# A 20km/h difference between the vehicle and bike translates to 56cm/reading
-        #if (CV < (previousReading - 60)):
-	if (CV < (500)):	
+        if (CV < (previousReading - 7)):
+			
             # if (CV < 50):
                 # pwm.start(5)
                 # pwm.ChangeDutyCycle(100)
@@ -70,11 +69,13 @@ try:
             # elif (CV < 150):
                 # pwm.start(5)
                 # pwm.ChangeDutyCycle(50)
+
+	    if (CV < 50):			
+                GPIO.output(zonepin, True)
+	        pwm.start(5)
+                pwm.ChangeDutyCycle(100)
+		time.sleep(0.5)
 			
-            GPIO.output(zonepin, True)
-	    pwm.start(5)
-            pwm.ChangeDutyCycle(100)
-	    time.sleep(1)		
 	else:
 	    pwm.stop()
             GPIO.output(zonepin, False)

@@ -252,6 +252,6 @@ except KeyboardInterrupt:
 finally:
 	print "\n Cleanup GPIO"
 	GPIO.cleanup() # clean exit
-	camera.release()
+	#camera.release()
 	cv2.destroyAllWindows()
 	pwm.stop()
